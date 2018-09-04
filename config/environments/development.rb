@@ -26,8 +26,12 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  # send email when signup
+  config.action_mailer.default_url_options
+
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true # changed false to true on 20180904
+
 
   config.action_mailer.perform_caching = false
 
