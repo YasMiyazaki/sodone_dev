@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
-  get 'users/show'
 
-  get 'assessment/index'
-
-  get 'assessment/create'
 
   devise_for :users, controllers: { :omniauth_callbacks => "omniauth_callbacks" }
   
@@ -11,5 +7,11 @@ Rails.application.routes.draw do
   
   resources :users, only: [:show]
   resources :assessment, only: [:index, :create]
+
+  get 'users/show'
+
+  get 'assessment/index'
+  get 'assessment/create'
+  post 'assessment/create'
   
 end

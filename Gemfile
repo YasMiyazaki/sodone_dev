@@ -67,4 +67,8 @@ gem 'font-awesome-rails'
 
 gem 'materialize-sass'
 
+# Flash Message
 gem 'toastr-rails'
+
+# Debugger
+gem 'pry-byebug', group: :development

@@ -1,2 +1,115 @@
 <h1>Assessment#index</h1>
 <p>Find me in app/views/assessment/index.html.erb</p>
+
+<%= form_for(@assessment, url: assessment_create_path) do |f| %>
+    <div class="form-group">
+      
+      <%= f.hidden_field :user_id, :value => current_user.id, class: 'form-control' %>
+      
+      <%= f.label :organizationtype, '質問1 organizationtype' %>
+    <p>
+      <label>
+        <%= f.radio_button :organizationtype, 1 %>1
+      </label>
+    </p>
+    <p>
+      <label>
+        <%= f.radio_button :organizationtype, 2 %>2
+      </label>
+    </p>     
+    
+      <%= f.number_field  :organizationtype %>
+
+
+      <%= f.label :communication, '質問2 communication' %>
+    <p>
+      <label>
+        <%= f.radio_button :communication, 1 %>1
+      </label>
+    </p>
+    <p>
+      <label>
+        <%= f.radio_button :communication, 2 %>2
+      </label>
+    </p>      
+
+      <%= f.label :discussion, '質問3 discussion' %>
+    <p>
+      <label>
+        <%= f.radio_button :discussion, 1 %>1
+      </label>
+    </p>
+    <p>
+      <label>
+        <%= f.radio_button :discussion, 2 %>2
+      </label>
+    </p> 
+
+      <%= f.label :confrontation, '質問4 confrontation' %>
+    <p>
+      <label>
+        <%= f.radio_button :confrontation, 1 %>1
+      </label>
+    </p>
+    <p>
+      <label>
+        <%= f.radio_button :confrontation, 2 %>2
+      </label>
+    </p>  
+
+
+      <%= f.label :trust, '質問5 trust' %>
+    <p>
+      <label>
+        <%= f.radio_button :trust, 1 %>1
+      </label>
+    </p>
+    <p>
+      <label>
+        <%= f.radio_button :trust, 2 %>2
+      </label>
+    </p> 
+
+
+      <%= f.label :decisionmaking, '質問6 decisionmaking' %>
+    <p>
+      <label>
+        <%= f.radio_button :decisionmaking, 1 %>1
+      </label>
+    </p>
+    <p>
+      <label>
+        <%= f.radio_button :decisionmaking, 2 %>2
+      </label>
+    </p> 
+
+
+      <%= f.label :responsibility, '質問7 responsibility' %>
+    <p>
+      <label>
+        <%= f.radio_button :responsibility, 1 %>1
+      </label>
+    </p>
+    <p>
+      <label>
+        <%= f.radio_button :responsibility, 2 %>2
+      </label>
+    </p> 
+    
+
+      <%= f.label :value, '質問8 value' %>
+    <p>
+      <label>
+        <%= f.radio_button :value, 1 %>1
+      </label>
+    </p>
+    <p>
+      <label>
+        <%= f.radio_button :value, 2 %>2
+      </label>
+    </p> 
+    
+    </div>
+    <%= f.submit '結果を送信する', class: "btn waves-effect waves-light" %>
+<% end %>
+
