@@ -1,7 +1,15 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  get 'users/show'
+
+  get 'assessment/index'
+
+  get 'assessment/create'
+
+  devise_for :users, controllers: { :omniauth_callbacks => "omniauth_callbacks" }
   
   root to: 'toppages#index'
   
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :users, only: [:show]
+  resources :assessment, only: [:index, :create]
+  
 end

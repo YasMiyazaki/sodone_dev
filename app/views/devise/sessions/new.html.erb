@@ -1,0 +1,25 @@
+<h4>Log in</h4>
+
+    <div class="row">
+      <div class="col s12">
+        <%= link_to user_line_omniauth_authorize_path, class: "btn btn-social btn-line" do %>
+        <span class="fa fa-line"></span> LINEでログイン
+        <% end %>
+      </div>
+      
+      <div class="col s12">
+        <%= link_to user_twitter_omniauth_authorize_path, class: "btn btn-social btn-twitter" do %>
+        <span class="fa fa-twitter"></span> Twitterでログイン
+        <% end %>
+      </div>
+      
+      <div class="col s12">
+        <%= link_to user_facebook_omniauth_authorize_path, class: "btn btn-social btn-facebook" do %>
+        <span class="fa fa-facebook"></span> Facebookでログイン
+        <% end %>
+      </div>
+      
+      <div>
+        <p>利用規約とプライバシーポリシー</p>
+      </div>  
+    </div>

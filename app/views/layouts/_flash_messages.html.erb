@@ -1,3 +1,7 @@
-<% flash.each do |message_type, message| %>
-  <div class="alert alert-<%= message_type %>"><%= message %></div>
+<% flash.each do |type, msg| %>
+  <% type = 'info' if type == 'notice' %>
+  <% type = 'error' if type == 'alert' %>
+  <script>
+    toastr['<%= type %>']('<%= msg %>');
+  </script>
 <% end %>

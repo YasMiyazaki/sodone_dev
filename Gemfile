@@ -60,3 +60,11 @@ gem 'omniauth-twitter'
 
 #environment variables management
 gem 'dotenv-rails'
+
+# Login Button
+gem 'bootstrap-social-rails'
+gem 'font-awesome-rails'
+
+gem 'materialize-sass'
+
+gem 'toastr-rails'
