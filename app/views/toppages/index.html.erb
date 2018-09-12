@@ -4,25 +4,10 @@
 <!-- LINEのみ色とアイコンの調整が必要。-->
 
     <div class="row">
-      <div class="col s12 m4">
-        <%= link_to user_line_omniauth_authorize_path, class: "btn btn-social btn-line" do %>
-        <span class="fa fa-line"></span> LINEで診断
-        <% end %>
-      </div>
-      
-      <div class="col s12 m4">
-        <%= link_to user_twitter_omniauth_authorize_path, class: "btn btn-social btn-twitter" do %>
-        <span class="fa fa-twitter"></span> Twitterで診断
-        <% end %>
-      </div>
-      
-      <div class="col s12 m4">
-        <%= link_to user_facebook_omniauth_authorize_path, class: "btn btn-social btn-facebook" do %>
-        <span class="fa fa-facebook"></span> Facebookで診断
-        <% end %>
-      </div>
+      <%= render 'layouts/signin_button' %>
 
       <p>利用規約とプライバシーポリシー</p>
+      ※利用規約、プライバシーポリシーの作成は未対応。ユーザがログイン毎に作成されているので、DBとのマッチングが必要。
     </div>
   </div>
 

@@ -72,3 +72,11 @@ gem 'toastr-rails'
 
 # Debugger
 gem 'pry-byebug', group: :development
+
+gem 'chart-js-rails'
+
+# jsonを使うため。(chart.jsへのデータ引き渡し用)
+gem 'gon'
+
+# 国籍選択
+gem 'country_select'

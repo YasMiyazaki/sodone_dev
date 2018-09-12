@@ -6,12 +6,13 @@ Rails.application.routes.draw do
   root to: 'toppages#index'
   
   resources :users, only: [:show]
-  resources :assessment, only: [:index, :create]
+  resources :assessment, only: [:index, :create, :about]
 
   get 'users/show'
 
   get 'assessment/index'
   get 'assessment/create'
   post 'assessment/create'
+  get 'assessment/about'
   
 end

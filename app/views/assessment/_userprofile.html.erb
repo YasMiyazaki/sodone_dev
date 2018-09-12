@@ -1,0 +1,78 @@
+      <div class="card-panel light-blue lighten-5">
+        <h5>回答者プロファイル設定<small> (所要時間1分、回答必須)</small></h5>
+      </div>
+      
+      <%= label :sex, '性別' %>
+      <div class="row">  
+        <div class="col s12">
+          <label class="col s4">
+            <%= radio_button_tag :sex, 1, required: true %><span>男</span>
+          </label>
+          <label class="col s4">
+            <%= radio_button_tag :sex, 2, required: true %><span>女</span>
+          </label>
+          <label class="col s4">
+            <%= radio_button_tag :sex, 3, required: true %><span>回答しない</span>
+          </label>
+        </div>
+      </div>
+  
+      <%= label :nationality, '国籍' %>
+      <div class: "input-field col s12">
+        <%= country_select :nationality,"", priority_countries: ["JP"], :include_blank => true ,:required => true, locale: 'ja' %>
+      </div>
+
+      <%= label :age, '年齢' %>
+      <div class: "input-field col s12">
+        <%= select_tag :age, options_for_select( {
+          '選択してください' => "",
+          '10代未満' => 0,
+          '10代' => 10,
+          '20代' =>2,
+          '30代' =>3,
+          '40代' =>4,
+          '50代' =>5,
+          '60代' =>6,
+          '70代以上' =>7
+          }), {:include_blank => true ,:required => true} %>
+      </div>
+      
+      <%= label :occupation, '業種' %>
+      <small>（<%= link_to '参考', 'https://ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E6%A8%99%E6%BA%96%E7%94%A3%E6%A5%AD%E5%88%86%E9%A1%9E', target: :_blank  %>）</small>
+      <div class: "input-field col s12">
+        <%= select_tag :occupation, options_for_select( { 
+          '選択してください' => "",
+          '農業，林業' =>  1,
+          '漁業' =>  2,
+          '鉱業，採石業，砂利採取業' =>  3,
+          '建設業' =>  4,
+          '製造業' =>  5,
+          '電気・ガス・熱供給・水道業' =>  6,
+          '情報通信業' =>  7,
+          '運輸業，郵便業' =>  8,
+          '卸売業，小売業' =>  9,
+          '金融業，保険業' =>  10,
+          '不動産業，物品賃貸業' =>  11,
+          '学術研究' =>  12,
+          '専門・技術サービス業' =>  13,
+          '宿泊業，飲食サービス業' =>  14,
+          '生活関連サービス業，娯楽業' =>  15,
+          '教育，学習支援業' =>  16,
+          '医療，福祉' =>  17,
+          '複合サービス事業' =>  18,
+          'サービス業（他に分類されないもの）' =>  19,
+          '公務' =>  20,
+          '分類不能' =>  21,
+          '主婦' =>  22,
+          '無職' =>  23,
+          '学生' =>  24,
+          '回答しない' =>  0,
+          }), {:include_blank => true ,:required => true} %>
+      </div>
+      
+      <%= label :sizeoforg, '組織の規模' %>
+      <div class: "input-field col s12">
+        <%= select_tag :sizeoforg, options_for_select( { '選択してください' => "",'1人(自分)' => 0,'10人未満' => 10,'100人未満' =>2,'500人未満' =>3,'1000人未満' =>4,'5000人未満' =>5,'5000人以上' =>6}), {:include_blank => true ,:required => true} %>
+      </div>
+
+    </div>

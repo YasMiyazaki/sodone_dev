@@ -1,2 +1,25 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+# データ取得ロジックは現状テーブルの最新版のみ取得。ユーザに紐づいていない。
+<h5><%= current_user.name %>さんの診断結果</h5>
+  <div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s6"><a class="active"  href="#result1">自分の診断結果</a></li>
+        <li class="tab col s6"><a href="#result2">診断結果の比較</a></li>
+      </ul>
+    </div>
+    <div id="result1" class="col s12">
+      <canvas id="myChart" width="400" height="400"></canvas>
+      <script>draw_graph();</script>
+      
+      <p>詳細説明はこちら</p>
+    </div>
+    <div id="result2" class="col s12">
+      Test 2
+      <canvas id="compareChart" width="400" height="400"></canvas>
+      <script>draw_graph();</script>
+    </div>
+  </div>
+  
+  
+
+

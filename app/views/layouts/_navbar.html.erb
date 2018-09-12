@@ -4,13 +4,13 @@
       <ul class="right hide-on-med-and-down">
 
         <% if user_signed_in? %>
-          <li><%= link_to 'サービス', 'https://www.work.sodone.jp/' %></li>
-          <li><%= link_to '診断する', 'https://www.work.sodone.jp/' %></li>
-          <li><%= link_to 'ユーザ', edit_user_registration_path %></li>
+          <li><%= link_to 'サービス', assessment_about_path %></li>
+          <li><%= link_to '診断する', assessment_index_path %></li>
+          <li><%= link_to current_user.name, current_user %></li>
           <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>          
         <% else %>
-          <li><%= link_to 'サービス', 'https://www.work.sodone.jp/' %></li>
-          <li><%= link_to '診断する', 'https://www.work.sodone.jp/' %></li>
+          <li><%= link_to 'サービス', assessment_about_path %></li>
+          <li><%= link_to '診断する', assessment_index_path %></li>
           <li><%= link_to 'ログイン', new_user_session_path %></li>
         <% end %>
       </ul>

@@ -1,115 +1,1274 @@
-<h1>Assessment#index</h1>
-<p>Find me in app/views/assessment/index.html.erb</p>
+<h2>アセスメント</h2>
+<p>formをforからmodelに依存しない形に修正し、集計処理をcontroller側に加える。</p>
+<p>エラーハンドリング※すべての項目が選択されているか　をいれる。</p>
 
-<%= form_for(@assessment, url: assessment_create_path) do |f| %>
+<%= form_tag({controller: :assessment, action: :create },
+  id: :assessmentcalculation, class: :assesscalcform) do %>
+
     <div class="form-group">
       
-      <%= f.hidden_field :user_id, :value => current_user.id, class: 'form-control' %>
+      <%= hidden_field :user_id, current_user.id, class: 'form-control' %>
       
-      <%= f.label :organizationtype, '質問1 organizationtype' %>
-    <p>
-      <label>
-        <%= f.radio_button :organizationtype, 1 %>1
-      </label>
-    </p>
-    <p>
-      <label>
-        <%= f.radio_button :organizationtype, 2 %>2
-      </label>
-    </p>     
+      <%= label :organizationtype1, '質問1-1 organizationtype' %>
+      
+      <div class="questionlist">
+        平社員が他部署の管理職に意見を聞く場合は、まずは他部署の担当者レベルに調整をするべきだ。業務スピードや意見の実現を早めたり、上司を出し抜くために社内の階層や垣根を飛び越えるのは良くない。
+      </div>
+      
+      <div class="row">  
+        <div class="col s12">
+          <label class="col s2">
+            <%= radio_button :organizationtype1, "", 4, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :organizationtype1, "", 3, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :organizationtype1, "", 2, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :organizationtype1, "", 1, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :organizationtype1, "", 0, required: true %><span> </span>
+          </label>
+        </div>
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <div class="col s2">
+            <span class="pink-text">
+              <i class="material-icons">sentiment_very_satisfied</i>賛成
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="pink-text text-lighten-2">
+              <i class="material-icons">sentiment_satisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="grey-text">
+              <i class="material-icons">sentiment_neutral</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text text-lighten-2">
+              <i class="material-icons">sentiment_dissatisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text"><i class="material-icons">sentiment_very_dissatisfied</i>反対
+            </span>
+          </div>
+        </div>
+      </div>
+
+
+      <%= label :organizationtype2, '質問1-2 organizationtype' %>
+      <div class="questionlist">
+        顧客と会話するときは、相手の役職等を気にせず誰とでも平等に接する。相手がどの役職の人間なのかに注意深くなることは本質的ではない。
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <label class="col s2">
+            <%= radio_button :organizationtype2, "", 0, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :organizationtype2, "", 1, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :organizationtype2, "", 2, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :organizationtype2, "", 3, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :organizationtype2, "", 4, required: true %><span> </span>
+          </label>
+        </div>
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <div class="col s2">
+            <span class="pink-text">
+              <i class="material-icons">sentiment_very_satisfied</i>賛成
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="pink-text text-lighten-2">
+              <i class="material-icons">sentiment_satisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="grey-text">
+              <i class="material-icons">sentiment_neutral</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text text-lighten-2">
+              <i class="material-icons">sentiment_dissatisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text"><i class="material-icons">sentiment_very_dissatisfied</i>反対
+            </span>
+          </div>
+        </div>
+      </div>
+      
+
+      <%= label :organizationtype3, '質問1-3 organizationtype' %>
+      <div class="questionlist">
+        他部署の管理職が自分の了解なしに、自分の部下に仕事を振られることに不快だと感じる。また、自分が他部署の下位の役職の担当者に仕事を振るときは、その管理者にまず話をする。
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <label class="col s2">
+            <%= radio_button :organizationtype3, "", 4, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :organizationtype3, "", 3, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :organizationtype3, "", 2, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :organizationtype3, "", 1, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :organizationtype3, "", 0, required: true %><span> </span>
+          </label>
+        </div>
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <div class="col s2">
+            <span class="pink-text">
+              <i class="material-icons">sentiment_very_satisfied</i>賛成
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="pink-text text-lighten-2">
+              <i class="material-icons">sentiment_satisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="grey-text">
+              <i class="material-icons">sentiment_neutral</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text text-lighten-2">
+              <i class="material-icons">sentiment_dissatisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text"><i class="material-icons">sentiment_very_dissatisfied</i>反対
+            </span>
+          </div>
+        </div>
+      </div>    
+
+      <%= label :communication1, '質問2-1 communication' %>
+      <div class="questionlist">
+        「あれいい感じにやっておいて。」と依頼したタスクを自分の部下が理解できておらず進捗が遅れていることを発見したときに、部下の理解力やコミュニケーション力が足りていないと感じる。
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <label class="col s2">
+            <%= radio_button :communication1, "", 4, required: true %><span> </span> 
+          </label>
+          <label class="col s2">
+            <%= radio_button :communication1, "", 3, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :communication1, "", 2, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :communication1, "", 1, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :communication1, "", 0, required: true %><span> </span>
+          </label>
+        </div>
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <div class="col s2">
+            <span class="pink-text">
+              <i class="material-icons">sentiment_very_satisfied</i>賛成
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="pink-text text-lighten-2">
+              <i class="material-icons">sentiment_satisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="grey-text">
+              <i class="material-icons">sentiment_neutral</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text text-lighten-2">
+              <i class="material-icons">sentiment_dissatisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text"><i class="material-icons">sentiment_very_dissatisfied</i>反対
+            </span>
+          </div>
+        </div>
+      </div>    
+      
+      
+      <%= label :communication2, '質問2-2 communication' %>
+      <div class="questionlist">
+        自社の提案内容に対し、上司が少し笑いながら「提案ありがとう。検討します。」と返答した場合には、言葉通り検討してくれると捉える。裏の意味があると考え、過去の発言や行動を振り返りはしない。
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <label class="col s2">
+            <%= radio_button :communication2, "", 0, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :communication2, "", 1, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :communication2, "", 2, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :communication2, "", 3, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :communication2, "", 4, required: true %><span> </span>
+          </label>
+        </div>
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <div class="col s2">
+            <span class="pink-text">
+              <i class="material-icons">sentiment_very_satisfied</i>賛成
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="pink-text text-lighten-2">
+              <i class="material-icons">sentiment_satisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="grey-text">
+              <i class="material-icons">sentiment_neutral</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text text-lighten-2">
+              <i class="material-icons">sentiment_dissatisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text"><i class="material-icons">sentiment_very_dissatisfied</i>反対
+            </span>
+          </div>
+        </div>
+      </div>       
+
+      <%= label :communication3, '質問2-3 communication' %>
+      <div class="questionlist">
+        会議での資料や発表は、相手の受け取り方や感情を意識し、文脈や伝え方に応じてメッセージの意味や捉え方を変えられるあいまいな表現が好ましい。具体的な言葉で端的に主張することは関係の悪化を招く。
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <label class="col s2">
+            <%= radio_button :communication3, "", 4, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :communication3, "", 3, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :communication3, "", 2, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :communication3, "", 1, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :communication3, "", 0, required: true %><span> </span>
+          </label>
+        </div>
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <div class="col s2">
+            <span class="pink-text">
+              <i class="material-icons">sentiment_very_satisfied</i>賛成
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="pink-text text-lighten-2">
+              <i class="material-icons">sentiment_satisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="grey-text">
+              <i class="material-icons">sentiment_neutral</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text text-lighten-2">
+              <i class="material-icons">sentiment_dissatisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text"><i class="material-icons">sentiment_very_dissatisfied</i>反対
+            </span>
+          </div>
+        </div>
+      </div>     
+
+      <%= label :discussion1, '質問3-1 discussion' %>
+      <div class="questionlist">
+        会議中に上司が間違った発言をしていても、他の人がいるその場で訂正するのではなく、会議後にそれとなく伝えることで上司の面子を保つ。
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <label class="col s2">
+            <%= radio_button :discussion1, "", 4, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :discussion1, "", 3, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :discussion1, "", 2, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :discussion1, "", 1, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :discussion1, "", 0, required: true %><span> </span>
+          </label>
+        </div>
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <div class="col s2">
+            <span class="pink-text">
+              <i class="material-icons">sentiment_very_satisfied</i>賛成
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="pink-text text-lighten-2">
+              <i class="material-icons">sentiment_satisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="grey-text">
+              <i class="material-icons">sentiment_neutral</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text text-lighten-2">
+              <i class="material-icons">sentiment_dissatisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text"><i class="material-icons">sentiment_very_dissatisfied</i>反対
+            </span>
+          </div>
+        </div>
+      </div>       
+
+      <%= label :discussion2, '質問3-2 discussion' %>
+      <div class="questionlist">
+        会議の出席者からの質問に対し、回答すべき事項を担当するチームが質問に答えられなかった場合には担当外であっても自分が少しでも知っていることであれば発言する。
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <label class="col s2">
+            <%= radio_button :discussion2, "", 0, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :discussion2, "", 1, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :discussion2, "", 2, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :discussion2, "", 3, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :discussion2, "", 4, required: true %><span> </span>
+          </label>
+        </div>
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <div class="col s2">
+            <span class="pink-text">
+              <i class="material-icons">sentiment_very_satisfied</i>賛成
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="pink-text text-lighten-2">
+              <i class="material-icons">sentiment_satisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="grey-text">
+              <i class="material-icons">sentiment_neutral</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text text-lighten-2">
+              <i class="material-icons">sentiment_dissatisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text"><i class="material-icons">sentiment_very_dissatisfied</i>反対
+            </span>
+          </div>
+        </div>
+      </div>         
+
+      <%= label :discussion3, '質問3-3 discussion' %>
+      <div class="questionlist">
+        色々な立場の人との会議では、他人の意見にできる限り付け加えたり、反論したりすることで、会議の成果を高めようとするべきだ。発言しない人には退出してもらいたい。
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <label class="col s2">
+            <%= radio_button :discussion3, "", 0, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :discussion3, "", 1, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :discussion3, "", 2, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :discussion3, "", 3, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :discussion3, "", 4, required: true %><span> </span>
+          </label>
+        </div>
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <div class="col s2">
+            <span class="pink-text">
+              <i class="material-icons">sentiment_very_satisfied</i>賛成
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="pink-text text-lighten-2">
+              <i class="material-icons">sentiment_satisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="grey-text">
+              <i class="material-icons">sentiment_neutral</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text text-lighten-2">
+              <i class="material-icons">sentiment_dissatisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text"><i class="material-icons">sentiment_very_dissatisfied</i>反対
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <%= label :confrontation1, '質問4-1 confrontation' %>
+      <div class="questionlist">
+        部下の評価時においては、できなかった点を伝えることに時間を割き、自分が考える部下の改善すべき点を明確に相手に伝えるよう心掛ける。
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <label class="col s2">
+            <%= radio_button :confrontation1, "", 0, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :confrontation1, "", 1, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :confrontation1, "", 2, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :confrontation1, "", 3, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :confrontation1, "", 4, required: true %><span> </span>
+          </label>
+        </div>
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <div class="col s2">
+            <span class="pink-text">
+              <i class="material-icons">sentiment_very_satisfied</i>賛成
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="pink-text text-lighten-2">
+              <i class="material-icons">sentiment_satisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="grey-text">
+              <i class="material-icons">sentiment_neutral</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text text-lighten-2">
+              <i class="material-icons">sentiment_dissatisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text"><i class="material-icons">sentiment_very_dissatisfied</i>反対
+            </span>
+          </div>
+        </div>
+      </div>         
+
+      <%= label :confrontation2, '質問4-2 confrontation' %>
+      <div class="questionlist">
+        同僚から自分のプレゼンテーションで良くなかった点を述べられると、心苦しくなり、今後あまり関わりたくなくなってしまう。
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <label class="col s2">
+            <%= radio_button :confrontation2, "", 4, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :confrontation2, "", 3, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :confrontation2, "", 2, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :confrontation2, "", 1, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :confrontation2, "", 0, required: true %><span> </span>
+          </label>
+        </div>
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <div class="col s2">
+            <span class="pink-text">
+              <i class="material-icons">sentiment_very_satisfied</i>賛成
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="pink-text text-lighten-2">
+              <i class="material-icons">sentiment_satisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="grey-text">
+              <i class="material-icons">sentiment_neutral</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text text-lighten-2">
+              <i class="material-icons">sentiment_dissatisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text"><i class="material-icons">sentiment_very_dissatisfied</i>反対
+            </span>
+          </div>
+        </div>
+      </div>       
+
+      <%= label :confrontation3, '質問4-3 confrontation' %>
+      <div class="questionlist">
+        自身の仕事が基準を満たすものでなかったり、ミスが多ければ、それに対する指摘は上下関係に関係なく率直にすべての内容を伝えてもらいたい。ネガティブな発言を受け入れ、相手に対し嫌悪感を抱かずむしろ感謝する。
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <label class="col s2">
+            <%= radio_button :confrontation3, "", 0, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :confrontation3, "", 1, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :confrontation3, "", 2, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :confrontation3, "", 3, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :confrontation3, "", 4, required: true %><span> </span>
+          </label>
+        </div>
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <div class="col s2">
+            <span class="pink-text">
+              <i class="material-icons">sentiment_very_satisfied</i>賛成
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="pink-text text-lighten-2">
+              <i class="material-icons">sentiment_satisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="grey-text">
+              <i class="material-icons">sentiment_neutral</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text text-lighten-2">
+              <i class="material-icons">sentiment_dissatisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text"><i class="material-icons">sentiment_very_dissatisfied</i>反対
+            </span>
+          </div>
+        </div>
+      </div>       
+
+      <%= label :trust1, '質問5-1 trust' %>
+      <div class="questionlist">
+        仕事関係の人とは、会食や飲み会を通じて信頼関係を深めることが有効だ。その人の人間性や感性を知ることで、仕事の成果も高まる。
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <label class="col s2">
+            <%= radio_button :trust1, "", 4, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :trust1, "", 3, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :trust1, "", 2, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :trust1, "", 1, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :trust1, "", 0, required: true %><span> </span>
+          </label>
+        </div>
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <div class="col s2">
+            <span class="pink-text">
+              <i class="material-icons">sentiment_very_satisfied</i>賛成
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="pink-text text-lighten-2">
+              <i class="material-icons">sentiment_satisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="grey-text">
+              <i class="material-icons">sentiment_neutral</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text text-lighten-2">
+              <i class="material-icons">sentiment_dissatisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text"><i class="material-icons">sentiment_very_dissatisfied</i>反対
+            </span>
+          </div>
+        </div>
+      </div>    
+
+      <%= label :trust2, '質問5-2 trust' %>
+      <div class="questionlist">
+        優秀で成果をあげる社員が評価されるべきだ。本人の信条や自分との相性は評価には関係がない。
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <label class="col s2">
+            <%= radio_button :trust2, "", 0, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :trust2, "", 1, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :trust2, "", 2, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :trust2, "", 3, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :trust2, "", 4, required: true %><span> </span>
+          </label>
+        </div>
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <div class="col s2">
+            <span class="pink-text">
+              <i class="material-icons">sentiment_very_satisfied</i>賛成
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="pink-text text-lighten-2">
+              <i class="material-icons">sentiment_satisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="grey-text">
+              <i class="material-icons">sentiment_neutral</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text text-lighten-2">
+              <i class="material-icons">sentiment_dissatisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text"><i class="material-icons">sentiment_very_dissatisfied</i>反対
+            </span>
+          </div>
+        </div>
+      </div>      
+
+      <%= label :trust3, '質問5-3 trust' %>
+      <div class="questionlist">
+        遠方からビジネスパートナーが短期出張に来た際は、食事はデリバリー等で短くすまし夜まで会議をすることで、できる限りの時間を仕事の成果に結びつけるための活動に集中すべきだ。
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <label class="col s2">
+            <%= radio_button :trust3, "", 0, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :trust3, "", 1, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :trust3, "", 2, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :trust3, "", 3, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :trust3, "", 4, required: true %><span> </span>
+          </label>
+        </div>
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <div class="col s2">
+            <span class="pink-text">
+              <i class="material-icons">sentiment_very_satisfied</i>賛成
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="pink-text text-lighten-2">
+              <i class="material-icons">sentiment_satisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="grey-text">
+              <i class="material-icons">sentiment_neutral</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text text-lighten-2">
+              <i class="material-icons">sentiment_dissatisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text"><i class="material-icons">sentiment_very_dissatisfied</i>反対
+            </span>
+          </div>
+        </div>
+      </div>       
+
+      <%= label :decisionmaking1, '質問6-1 decisionmaking' %>
+      <div class="questionlist">
+        社内の意思決定にはトップの人間であっても、関係者に事前に賛同を得るべきだ。独断で従わせるというやり方では上手くいかない。
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <label class="col s2">
+            <%= radio_button :decisionmaking1, "", 4, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :decisionmaking1, "", 3, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :decisionmaking1, "", 2, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :decisionmaking1, "", 1, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :decisionmaking1, "", 0, required: true %><span> </span>
+          </label>
+        </div>
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <div class="col s2">
+            <span class="pink-text">
+              <i class="material-icons">sentiment_very_satisfied</i>賛成
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="pink-text text-lighten-2">
+              <i class="material-icons">sentiment_satisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="grey-text">
+              <i class="material-icons">sentiment_neutral</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text text-lighten-2">
+              <i class="material-icons">sentiment_dissatisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text"><i class="material-icons">sentiment_very_dissatisfied</i>反対
+            </span>
+          </div>
+        </div>
+      </div>    
+
+      <%= label :decisionmaking2, '質問6-2 decisionmaking' %>
+      <div class="questionlist">
+        孤独を感じたとしても、反発があったとしても、トップが強い意志で決断をすることがリーダーシップだと思う。周囲の意見に同調していては、思い切った決断はできない。
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <label class="col s2">
+            <%= radio_button :decisionmaking2, "", 0, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :decisionmaking2, "", 1, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :decisionmaking2, "", 2, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :decisionmaking2, "", 3, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :decisionmaking2, "", 4, required: true %><span> </span>
+          </label>
+        </div>
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <div class="col s2">
+            <span class="pink-text">
+              <i class="material-icons">sentiment_very_satisfied</i>賛成
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="pink-text text-lighten-2">
+              <i class="material-icons">sentiment_satisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="grey-text">
+              <i class="material-icons">sentiment_neutral</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text text-lighten-2">
+              <i class="material-icons">sentiment_dissatisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text"><i class="material-icons">sentiment_very_dissatisfied</i>反対
+            </span>
+          </div>
+        </div>
+      </div>    
+
+      <%= label :decisionmaking3, '質問6-3 decisionmaking' %>
+      <div class="questionlist">
+        組織内で一度決定したことを変更するのは認められ難く、とても困難な作業である。決定には重みがあり、簡単に変更が発生しないようあらかじめ考えられうるリスクを網羅し検討すべきだ。
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <label class="col s2">
+            <%= radio_button :decisionmaking3, "", 4, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :decisionmaking3, "", 3, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :decisionmaking3, "", 2, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :decisionmaking3, "", 1, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :decisionmaking3, "", 0, required: true %><span> </span>
+          </label>
+        </div>
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <div class="col s2">
+            <span class="pink-text">
+              <i class="material-icons">sentiment_very_satisfied</i>賛成
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="pink-text text-lighten-2">
+              <i class="material-icons">sentiment_satisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="grey-text">
+              <i class="material-icons">sentiment_neutral</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text text-lighten-2">
+              <i class="material-icons">sentiment_dissatisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text"><i class="material-icons">sentiment_very_dissatisfied</i>反対
+            </span>
+          </div>
+        </div>
+      </div>    
+
+      <%= label :responsibility1, '質問7-1 responsibility' %>
+      <div class="questionlist">
+        チームの仕事が停滞していれば、それが自分の仕事でなくても、残業してでも、協力し突破することが一流の条件だ。
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <label class="col s2">
+            <%= radio_button :responsibility1, "", 4, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :responsibility1, "", 3, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :responsibility1, "", 2, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :responsibility1, "", 1, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :responsibility1, "", 0, required: true %><span> </span>
+          </label>
+        </div>
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <div class="col s2">
+            <span class="pink-text">
+              <i class="material-icons">sentiment_very_satisfied</i>賛成
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="pink-text text-lighten-2">
+              <i class="material-icons">sentiment_satisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="grey-text">
+              <i class="material-icons">sentiment_neutral</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text text-lighten-2">
+              <i class="material-icons">sentiment_dissatisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text"><i class="material-icons">sentiment_very_dissatisfied</i>反対
+            </span>
+          </div>
+        </div>
+      </div>    
+
+      <%= label :responsibility2, '質問7-2 responsibility' %>
+      <div class="questionlist">
+        自分が成果を出しても、ボーナスや昇進、評価に結びつかなくて問題はない。成果は周囲の協力によって成り立つものであり、必ずしも個人には紐づかない。
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <label class="col s2">
+            <%= radio_button :responsibility2, "", 4, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :responsibility2, "", 3, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :responsibility2, "", 2, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :responsibility2, "", 1, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :responsibility2, "", 0, required: true %><span> </span>
+          </label>
+        </div>
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <div class="col s2">
+            <span class="pink-text">
+              <i class="material-icons">sentiment_very_satisfied</i>賛成
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="pink-text text-lighten-2">
+              <i class="material-icons">sentiment_satisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="grey-text">
+              <i class="material-icons">sentiment_neutral</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text text-lighten-2">
+              <i class="material-icons">sentiment_dissatisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text"><i class="material-icons">sentiment_very_dissatisfied</i>反対
+            </span>
+          </div>
+        </div>
+      </div>    
+
+      <%= label :responsibility3, '質問7-3 responsibility' %>
+      <div class="questionlist">
+        自分の仕事の範囲を定義し、それに集中し成果を上げることが、組織にとっての最大の貢献と自信の生産性の最大化につながる。他人の仕事に手を出すことは組織の統率力や生産性の低下につながる。
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <label class="col s2">
+            <%= radio_button :responsibility3, "", 0, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :responsibility3, "", 1, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :responsibility3, "", 2, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :responsibility3, "", 3, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :responsibility3, "", 4, required: true %><span> </span>
+          </label>
+        </div>
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <div class="col s2">
+            <span class="pink-text">
+              <i class="material-icons">sentiment_very_satisfied</i>賛成
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="pink-text text-lighten-2">
+              <i class="material-icons">sentiment_satisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="grey-text">
+              <i class="material-icons">sentiment_neutral</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text text-lighten-2">
+              <i class="material-icons">sentiment_dissatisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text"><i class="material-icons">sentiment_very_dissatisfied</i>反対
+            </span>
+          </div>
+        </div>
+      </div>       
+
+       <%= label :value1, '質問8-1 value' %>
+      <div class="questionlist">
+        顧客からの無理な要求を、協力会社や関係者を巻き込んで解決した場合、それは自分の能力ではなく、協力してくれた人のおかげである。自分の評価にはつながらない。
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <label class="col s2">
+            <%= radio_button :value1, "", 4, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :value1, "", 3, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :value1, "", 2, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :value1, "", 1, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :value1, "", 0, required: true %><span> </span>
+          </label>
+        </div>
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <div class="col s2">
+            <span class="pink-text">
+              <i class="material-icons">sentiment_very_satisfied</i>賛成
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="pink-text text-lighten-2">
+              <i class="material-icons">sentiment_satisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="grey-text">
+              <i class="material-icons">sentiment_neutral</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text text-lighten-2">
+              <i class="material-icons">sentiment_dissatisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text"><i class="material-icons">sentiment_very_dissatisfied</i>反対
+            </span>
+          </div>
+        </div>
+      </div>    
+
+      <%= label :value2, '質問8-2 value' %>
+      <div class="questionlist">
+        様々な立場の人間が集まる会議では、席順や到着順を意識し、さらに会議の議題は順守する必要がある。
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <label class="col s2">
+            <%= radio_button :value2, "", 4, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :value2, "", 3, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :value2, "", 2, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :value2, "", 1, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :value2, "", 0, required: true %><span> </span>
+          </label>
+        </div>
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <div class="col s2">
+            <span class="pink-text">
+              <i class="material-icons">sentiment_very_satisfied</i>賛成
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="pink-text text-lighten-2">
+              <i class="material-icons">sentiment_satisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="grey-text">
+              <i class="material-icons">sentiment_neutral</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text text-lighten-2">
+              <i class="material-icons">sentiment_dissatisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text"><i class="material-icons">sentiment_very_dissatisfied</i>反対
+            </span>
+          </div>
+        </div>
+      </div>       
+
+      <%= label :value3, '質問8-3 value' %>
+      <div class="questionlist">
+        書類は常にフォーマットや書式、言葉づかいが統一されておくべきだ。緊急だからといって違うフォーマットを使うことは避けるのが当然だ。
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <label class="col s2">
+            <%= radio_button :value3, "", 4, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :value3, "", 3, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :value3, "", 2, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :value3, "", 1, required: true %><span> </span>
+          </label>
+          <label class="col s2">
+            <%= radio_button :value3, "", 0, required: true %><span> </span>
+          </label>
+        </div>
+      </div>
+      <div class="row">  
+        <div class="col s12">
+          <div class="col s2">
+            <span class="pink-text">
+              <i class="material-icons">sentiment_very_satisfied</i>賛成
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="pink-text text-lighten-2">
+              <i class="material-icons">sentiment_satisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="grey-text">
+              <i class="material-icons">sentiment_neutral</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text text-lighten-2">
+              <i class="material-icons">sentiment_dissatisfied</i>
+            </span>
+          </div>
+          <div class="col s2">
+            <span class="indigo-text"><i class="material-icons">sentiment_very_dissatisfied</i>反対
+            </span>
+          </div>
+        </div>
+      </div>    
     
-      <%= f.number_field  :organizationtype %>
-
-
-      <%= f.label :communication, '質問2 communication' %>
-    <p>
-      <label>
-        <%= f.radio_button :communication, 1 %>1
-      </label>
-    </p>
-    <p>
-      <label>
-        <%= f.radio_button :communication, 2 %>2
-      </label>
-    </p>      
-
-      <%= f.label :discussion, '質問3 discussion' %>
-    <p>
-      <label>
-        <%= f.radio_button :discussion, 1 %>1
-      </label>
-    </p>
-    <p>
-      <label>
-        <%= f.radio_button :discussion, 2 %>2
-      </label>
-    </p> 
-
-      <%= f.label :confrontation, '質問4 confrontation' %>
-    <p>
-      <label>
-        <%= f.radio_button :confrontation, 1 %>1
-      </label>
-    </p>
-    <p>
-      <label>
-        <%= f.radio_button :confrontation, 2 %>2
-      </label>
-    </p>  
-
-
-      <%= f.label :trust, '質問5 trust' %>
-    <p>
-      <label>
-        <%= f.radio_button :trust, 1 %>1
-      </label>
-    </p>
-    <p>
-      <label>
-        <%= f.radio_button :trust, 2 %>2
-      </label>
-    </p> 
-
-
-      <%= f.label :decisionmaking, '質問6 decisionmaking' %>
-    <p>
-      <label>
-        <%= f.radio_button :decisionmaking, 1 %>1
-      </label>
-    </p>
-    <p>
-      <label>
-        <%= f.radio_button :decisionmaking, 2 %>2
-      </label>
-    </p> 
-
-
-      <%= f.label :responsibility, '質問7 responsibility' %>
-    <p>
-      <label>
-        <%= f.radio_button :responsibility, 1 %>1
-      </label>
-    </p>
-    <p>
-      <label>
-        <%= f.radio_button :responsibility, 2 %>2
-      </label>
-    </p> 
+    <% if current_user.userprofile.nil? %>
+      <%= render 'assessment/userprofile' %>
+    <% end %>
     
-
-      <%= f.label :value, '質問8 value' %>
-    <p>
-      <label>
-        <%= f.radio_button :value, 1 %>1
-      </label>
-    </p>
-    <p>
-      <label>
-        <%= f.radio_button :value, 2 %>2
-      </label>
-    </p> 
-    
+    <div>
+      <%= submit_tag '結果を送信する', class: "btn waves-effect waves-light btn-large light-blue" %>
     </div>
-    <%= f.submit '結果を送信する', class: "btn waves-effect waves-light" %>
+
 <% end %>
 

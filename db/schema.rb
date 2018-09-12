@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180905121340) do
+ActiveRecord::Schema.define(version: 20180912041318) do
 
   create_table "assessment_selves", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20180905121340) do
     t.index ["user_id"], name: "index_assessment_selves_on_user_id", using: :btree
   end
 
-  create_table "user_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "userprofiles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.string   "nationality"
     t.string   "age"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20180905121340) do
     t.string   "sex"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["user_id"], name: "index_user_details_on_user_id", using: :btree
+    t.index ["user_id"], name: "index_userprofiles_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -55,5 +55,5 @@ ActiveRecord::Schema.define(version: 20180905121340) do
   end
 
   add_foreign_key "assessment_selves", "users"
-  add_foreign_key "user_details", "users"
+  add_foreign_key "userprofiles", "users"
 end
