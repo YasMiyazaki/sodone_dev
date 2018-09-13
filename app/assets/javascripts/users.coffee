@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 window.draw_graph = -> 
-    ctx = document.getElementById("myChart").getContext('2d')
+    ctx = document.getElementById("myChart1").getContext('2d')
     myChart = new Chart(ctx, {
         type: 'horizontalBar',
         data: {
@@ -402,7 +402,6 @@ window.draw_graph = ->
             tooltips: {
                 enabled: false
             }
-            
             scales: {
                 xAxes: [{
                         stacked: true,
@@ -426,32 +425,37 @@ window.draw_graph = ->
         }
     })
     
-    
-    
-    ctx = document.getElementById("compareChart").getContext('2d')
-    myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
+    ctx = document.getElementById("myChart2").getContext('2d')
+    compareChart = new Chart(ctx, 
+        type: 'line'
+        data: 
             labels: [["ピラミッド","組織"], "ハイコンテクスト", "合意形成型", ["制限された", "議論"], ["対立回避", "建前"], "組織責任", ["共感による", "信頼構築"], ["プロセス/型", "による評価"]],
             datasets: [{
-                label:gon.name,
+                label:gon.username,
                 data: gon.selfassess,
                 fill: false,
-                pointRadius: 5,
-                borderColor: '#f39c12'
+                lineTension: 0,
+                pointRadius: 6,
+                borderColor: '#f39c12',
                 backgroundColor: '#f39c12'
-                
             }]
-        },
         options: {
             tooltips: {
                 enabled: false
-            },    
+            }
+            legend: {
+                position: 'bottom'
+                labels: {
+                    boxWidth: 12
+                }
+            }
             scales: {
                 yAxes: [{
                     ticks: {
+                        suggestedMax: 12
                         beginAtZero:true
-                        display: false,
+                        display: true,
+                        callback: (value) -> return (value / 12 * 100).toFixed(0) + '%'
                     }
                 }],
                 xAxes: [{
@@ -468,5 +472,32 @@ window.draw_graph = ->
                 }
             }
         }
-    })
+    )
     
+    i = 0
+    while i < gon.assessother.length
+
+      color = '#' + ("00000"+Math.floor(Math.random() * 0x1000000).toString(16)).substr(-6)
+    
+      newDataset = 
+        label: gon.requesteduser[i][1]
+        fill: false
+        data: [
+          gon.assessother[i].organizationtype
+          gon.assessother[i].communication
+          gon.assessother[i].decisionmaking
+          gon.assessother[i].discussion
+          gon.assessother[i].confrontation
+          gon.assessother[i].responsibility
+          gon.assessother[i].trust
+          gon.assessother[i].value
+        ]
+        lineTension: 0
+        pointRadius: 5
+        borderColor: color
+        backgroundColor: color
+      i++
+      compareChart.data.datasets.push(newDataset)
+      compareChart.update()
+      
+    return

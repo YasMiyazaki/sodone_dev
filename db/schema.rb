@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180912041318) do
+ActiveRecord::Schema.define(version: 20180912114431) do
+
+  create_table "assessment_others", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "requesteduser_id"
+    t.integer  "organizationtype"
+    t.integer  "communication"
+    t.integer  "discussion"
+    t.integer  "confrontation"
+    t.integer  "trust"
+    t.integer  "decisionmaking"
+    t.integer  "responsibility"
+    t.integer  "value"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["requesteduser_id"], name: "index_assessment_others_on_requesteduser_id", using: :btree
+    t.index ["user_id", "requesteduser_id"], name: "index_assessment_others_on_user_id_and_requesteduser_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_assessment_others_on_user_id", using: :btree
+  end
 
   create_table "assessment_selves", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -54,6 +72,8 @@ ActiveRecord::Schema.define(version: 20180912041318) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "assessment_others", "users"
+  add_foreign_key "assessment_others", "users", column: "requesteduser_id"
   add_foreign_key "assessment_selves", "users"
   add_foreign_key "userprofiles", "users"
 end
