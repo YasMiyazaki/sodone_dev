@@ -2,6 +2,11 @@ class UsersController < ApplicationController
 
   def show
 
+    # URLのShare用
+    require "uri"
+    @request_url = URI.encode(requestassessment_user_url(params[:id]))
+    @result_url = URI.encode(user_url(params[:id]))
+
     @user = User.find(params[:id]) #ログインユーザではなく、URLのユーザを取得していること
 
     if AssessmentSelf.where(user_id: @user.id).exists?
@@ -60,5 +65,30 @@ class UsersController < ApplicationController
       redirect_back(fallback_location: root_path)
     end
 
+  end
+  
+
+  def requestassessment
+
+    if User.exists?(current_user)
+      
+      @user = User.find(params[:id])
+
+      #一度テスト済みならテストできない。
+      if AssessmentOther.where(requesteduser_id: current_user.id).exists?
+        flash[:notice] = 'すでに一度このユーザに対して診断済みです。同一ユーザでは一度しかテストができません。'
+        redirect_to root_path
+      
+      elsif current_user.id == params[:id].to_i
+        flash[:notice] = '自ユーザが自ユーザに対する他者診断をすることはできません。'
+        redirect_to root_path
+      
+      else
+      end
+    
+    else
+      session[:previous_url] = request.fullpath
+      redirect_to new_user_session_url
+    end
   end
 end

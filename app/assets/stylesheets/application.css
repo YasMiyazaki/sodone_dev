@@ -20,9 +20,89 @@
  */
 
 .carousel { 
-  height: 90vh;
+  height: 100vh !important;
 }
 
 .btn btn-social btn-line{
   color: #00b900;
+}
+
+.assessfields h6 {
+  text-align:center;
+}
+
+.assessfields p {
+  margin-right: 0px;
+  margin-left: 0px;
+  margin-bottom: 40px;
+  border: 1px dotted grey;
+  padding: 1px;
+  color: #424242;
+  text-align:center;
+}
+
+.headlines {
+  margin: 30px;
+  padding: 1px;
+  background-color: #eeeeee;
+  text-align:center;
+  
+}
+
+.borderline {
+   border-bottom: 1px solid #e0e0e0 ;
+   margin: 20px;
+}
+
+.share{
+  border: 1px dashed #ffaaac;
+  margin: 10px auto;
+  padding-top: 5px;
+  text-align:center;
+}
+
+.morecontents{
+  border: 1px solid  #6bb6ff;
+  margin: 10px auto;
+  padding: 2px;
+  text-align:center;
+  background-color: #fafafa  ;
+}
+
+#result2 a {
+  margin: 0px auto;
+  text-align:center;
+}
+
+.box__area h6 {
+  padding: 20px 0px;
+}
+
+
+@media screen and (max-width: 480px) {
+  .box__area {
+    width: 90vw;
+    height: 90vh;
+  }
+}
+
+
+@media screen and (min-width: 1024px) {
+  .assessfields p {
+    width: 70%;
+    margin: 20px auto;
+  }
+  
+  .share{
+    padding: 10px;
+    width: 70%;
+    margin: 20px auto;
+  }
+  
+  .morecontents{
+    padding: 10px;
+    width: 70%;
+    margin: 20px auto;
+  }
+  
 }

@@ -1,38 +1,62 @@
-# データ取得ロジックは現状テーブルの最新版のみ取得。ユーザに紐づいていない。
-<h5><%= current_user.name %>さんの診断結果</h5>
-  <div class="row">
-    <div class="col s12">
-      <ul class="tabs">
-        <li class="tab col s6"><a class="active"  href="#result1">自分の診断結果</a></li>
-        <li class="tab col s6"><a href="#result2">診断結果の比較</a></li>
-      </ul>
-    </div>
-    <div id="result1" class="col s12">
-      <canvas id="myChart1" width="400" height="400"></canvas>
-      <script>draw_graph();</script>
-      
-      <p>詳細説明はこちら</p>
-    </div>
-    <div id="result2" class="col s12">
-      <canvas id="myChart2" width="400" height="400"></canvas>
-      <script>draw_graph();</script>
-    </div>
-  </div>
-  
-<div class="card-panel light-blue lighten-5">
-  <h6>自分の診断を知り合いに依頼</h6>
-</div>
-  
-<div class="card-panel light-blue lighten-5">
-  <h6>組織の構造と個人の行動</h6>  
-</div>
+<div class="box__area">
 
-  
-<div class="card-panel light-blue lighten-5">
-  <h6>組織で成果を出すスキル</h6>  
-</div>
+  <h6 class="center-align"><b><%= @user.name %>さんの組織内行動基準</b></h6>
 
-  
-<div class="card-panel light-blue lighten-5">
-  <h6>異文化を学ぶ</h6>  
+    <div class="row">
+      <div class="col s12">
+        <ul class="tabs">
+          <li class="tab col s6"><a class="active"  href="#result1">自分の行動基準</a></li>
+          <li class="tab col s6"><a href="#result2">結果の比較</a></li>
+        </ul>
+      </div>
+
+      <div id="result1" class="col s12">
+        <canvas id="myChart1" width="400" height="400"></canvas>
+        <script>draw_graph();</script>
+      </div>
+
+      <div id="result2" class="col s12">
+        <canvas id="myChart2" width="400" height="400"></canvas>
+        <script>draw_graph();</script>
+       <a class="waves-effect waves-teal btn-flat tooltipped btn-small grey" data-position="bottom" data-tooltip="他者診断の結果が上に表示されます。">表示内容</a>
+       <a class="waves-effect waves-teal btn-flat tooltipped btn-small grey" data-position="bottom" data-tooltip="%が高いほど、軸に記載された特性に当てはまります。">見方</a>
+      </div>
+    </div>
+
 </div>
+  
+  <% if current_user == @user %> 
+
+    <p class="borderline"></p>
+
+    <%= render 'assessment/snsshare' %>
+    
+    <p class="borderline"></p>
+
+    <div class="headlines">
+      <h6><b><i class="tiny material-icons">school</i> 深く学ぶ</b></h6>
+    </div>
+    
+    <div class="morecontents">
+      <p>SoDone組織診断のすべてを理解する。</p>
+      <a class="waves-effect waves-light btn btn-small pink lighten-3">note(一部有料)（構築中）</a>
+      <p>
+        <small>各項目の詳細説明、24の質問の意図、組織内での立ち振る舞い方と例、共通的スキルの身に着け方等、約1万5千字を読めます。</small>
+      </p>
+    </div>
+
+    <div class="morecontents">
+      <p>スキルを学ぶ。(構築中)</p>  
+      <a class="waves-effect waves-light btn btn-small blue lighten-3">ビジネス</a>
+      <a class="waves-effect waves-light btn btn-small purple lighten-3">日本組織</a>
+      <a class="waves-effect waves-light btn btn-small green lighten-3">グローバル組織</a>
+      <p>
+        <small>分野を特定したスキルの詳細内容についての記事を記載しています。</small>
+      </p>
+    </div>
+    
+    <p class="borderline"></p>
+    
+    <%= render 'assessment/assessresults' %>
+
+  <% end %>

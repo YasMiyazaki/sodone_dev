@@ -1,31 +1,38 @@
 <div class="carousel carousel-slider center">
   <div class="carousel-fixed-item center">
-
-<!-- LINEのみ色とアイコンの調整が必要。-->
-
+    <p class="grey-text darken-4"><b>24の質問に回答し、8つの行動基準を見える化。</b></p>
     <div class="row">
       <%= render 'layouts/signin_button' %>
 
-      <p>利用規約とプライバシーポリシー</p>
-      ※利用規約、プライバシーポリシーの作成は未対応。ユーザがログイン毎に作成されているので、DBとのマッチングが必要。
+      <p class="grey-text darken-2">利用規約とプライバシーポリシー</p>
+      <b>※利用規約、プライバシーポリシーの作成は未対応。</b>
     </div>
   </div>
 
-
-  <div class="carousel-item grey white-text" href="#one!">
-    <h2>組織内での行動を振り返る</h2>
-    <h4>SoDone 組織内行動診断</h4>
-    <p>This is your first panel</p>
+  <div class="carousel-item white grey-text text-darken-3" href="#one!">
+    <p>組織での行動基準を見える化する</p>
+    <h5 class="black-text">SoDone組織内行動診断</h5>
+    <%= image_tag "sodonegraph.png", alt: "graph", style: 'height:15%;width:auto;' %>
+    <p>
+      多文化社会で成果をだすために。
+      </br>
+      コミュニケーション・評価・意思決定等、組織行動の8要素を診断し見える化。自分の行動基準を理解する。
+    </p>
   </div>
-  <div class="carousel-item grey white-text" href="#two!">
-    <h2>組織内での行動を振り返る</h2>
-    <h4>SoDone 組織内行動診断</h4>
-    <p>This is your second panel</p>
+  
+  <div class="carousel-item white grey-text text-darken-3" href="#two!">
+    <p>周囲の目に映る</br>あなたの行動様式を知る</p>
+    <h5 class="black-text">SoDone組織内行動診断</h5>
+    <%= image_tag "sodonemanabu.png", alt: "manabu", style: 'height:15%;width:auto;' %>
+    <p>所属組織の人からの診断で、</br>「自分に見えていない自分の行動」、「相手に見えていない自分の行動」</br>を知り、あるべき行動を見直す。</p>
   </div>
-  <div class="carousel-item grey white-text" href="#two!">
-    <h2>組織内での行動を振り返る</h2>
-    <h4>SoDone 組織内行動診断</h4>
-    <p>敵を知り己を知れば百戦殆うからず</p>
+  
+  <div class="carousel-item white grey-text text-darken-3" href="#three!">
+    <p>組織内行動を学ぶ</p>
+    <h5 class="black-text">SoDone組織内行動診断</h5>
+    <%= image_tag "sodonesoshiki.png", alt: "soshiki", style: 'height:15%;width:auto;' %>
+    <p>フラットな組織で、結果重視の評価制度ばかりを魅力に感じていませんか？</p>
+    <p>自分が本当に理想とする組織を言語化し、組織内での成果を高めるためのスキルを獲得。</p>
   </div>
 </div>
 
@@ -34,5 +41,11 @@
     fullWidth: true,
     indicators: true
   });
+  
+  autoplay()   
+  function autoplay() {
+      $('.carousel').carousel('next');
+      setTimeout(autoplay, 8000);
+  }
   
 </script>

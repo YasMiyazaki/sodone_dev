@@ -1,11 +1,20 @@
 <h5 class="center-align"><b>SoDone組織内行動診断</b></h5>
+<h6 class="center-align"><font color="red">※依頼診断版</font></h6>
 
-<%= form_tag({controller: :assessment, action: :create },
+<p>診断対象者が以下の質問に対し、どう対応するかを想像して回答ください。</p>
+
+<p><b>
+  診断実施者：<%= current_user.name %>
+  </br>
+  診断対象者：<%= @user.name %></b>
+</p>
+
+<%= form_tag({controller: :requestedassessment, action: :create },
   id: :assessmentcalculation, class: :assesscalcform) do %>
 
     <div class="form-group">
- 
-      <%= hidden_field :user_id, current_user.id, class: 'form-control' %>
+      
+      <%= hidden_field_tag :requesterid, @user.id, class: 'form-control' %>
       
       <%= label :organizationtype1, 'Question 1 of 24' %>
       
@@ -616,9 +625,6 @@
     <div>
       <%= submit_tag '結果を送信する', class: "btn waves-effect waves-light btn-large light-blue" %>
     </div>
-
-
-
 
 <% end %>
 

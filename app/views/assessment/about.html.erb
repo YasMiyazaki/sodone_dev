@@ -1,29 +1,27 @@
-<div class="card-panel light-blue lighten-5">
-  <h6>サービス：何をアセスメントするのか</h6>
+<h5 class="center-align"><b>SoDone組織内行動診断</b></h5>
+
+<p class="center-align">
+  ビジネスシナリオに基づいた24の質問に回答することで、組織内のあなたの8つの行動基準を見える化します。
+</p>
+
+<div class="center-align">
+   <%= image_tag "sodonechart.png", alt: "chart", style: 'height:25%;width:auto;' %>
 </div>
 
-  <div class="row">
-    <%= render 'layouts/signin_button' %>
-  </div>      
+<p class="borderline"></p>
 
-<div class="card-panel light-blue lighten-5">
-  <h6>なにができるのか</h6>
+<%= render 'assessment/criteriadescriptions' %>
+
+<p class="borderline"></p>
+
+<%= render 'assessment/utilizeassessment' %>
+
+<p class="borderline"></p>
+
+<div class="about_headlines">
+  <h6 class="center-align"><b>診断する</b></h6>
 </div>
 
-    <div class="row">
-
-      <div class="col s6">
-        <h6>タイトル</h6>
-        <p>組織</p>
-      </div>
-      <div class="col s6">
-        <h6>タイトル</h6>
-        <p>組織イメージ</p>
-      </div>
-
-    </div>
-
-<div class="card-panel light-blue lighten-5">
-  <h6>どのようにアセスメントするのか</h6>
-</div>
-
+<div class="row">
+  <%= render 'layouts/signin_button' %>
+</div>    

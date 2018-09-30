@@ -1,17 +1,13 @@
-class AssessmentController < ApplicationController
-  before_action :authenticate_user!, except: [:about]
-  
-  def index
-    @user = current_user
-    @assessment = AssessmentSelf.new # form_for 用
-  end
+class RequestedassessmentController < ApplicationController
+  before_action :authenticate_user!
 
-# 診断結果の登録と同時にUser_detailの結果も保存すること。
-#2回目の診断に対応すること。buildでいい？
   def create
 
+#Userからコピーしたきただけ。
+
     #テスト結果の集計
-    @user = current_user.id
+    @currentuser = current_user.id
+    @requestuser = params[:requesterid].to_i
 
     # Userprofileの編集
     unless Userprofile.where(user_id: current_user.id).exists?
@@ -96,8 +92,9 @@ class AssessmentController < ApplicationController
       @value = @value1 + @value2 + @value3
       @value = @value.sum
     
-    @assessment = AssessmentSelf.new(
-      user_id: @user,
+    @assessment = AssessmentOther.new(
+      user_id: @requestuser,
+      requesteduser_id: @currentuser,
       organizationtype: @organizationtype,
       communication: @communication,
       discussion: @discussion,
@@ -112,7 +109,7 @@ class AssessmentController < ApplicationController
     end
 
     if @assessment.save
-      flash[:success]= '診断お疲れさまでした！'
+      flash[:success]= '他者診断お疲れさまでした！診断結果は依頼者のみが見ることができます。'
       redirect_to current_user
     else
       flash[:danger] = '診断に問題が発生しました。'
@@ -120,16 +117,4 @@ class AssessmentController < ApplicationController
       # エラーでもメッセージが出ない。要修正。
     end
   end
-  
-  def about
-    
-  end
-  
-    private
-
-  def userprofile_params
-    params.require(:userprofile).permit(:sex, :nationality, :age, :occupation, :sizeoforg)
-  end
-
-
 end
